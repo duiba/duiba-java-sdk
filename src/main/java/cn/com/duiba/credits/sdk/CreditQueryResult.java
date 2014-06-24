@@ -7,6 +7,7 @@ public class CreditQueryResult {
 	private String phone="";//手机号
 	private String alipay="";//支付宝账号
 	private String errorMessage="";
+	private String message="";
 
 	public CreditQueryResult(boolean success){
 		this.success=success;
@@ -19,9 +20,9 @@ public class CreditQueryResult {
 	
 	public String toString(){
 		if(success){
-			return "{'status':'ok','message':'','data':{'credits':'"+credits+"','phone':'"+phone+"','alipay':'"+alipay+"'}}";
+			return "{'status':'ok','message':'"+message+"','data':{'credits':'"+credits+"','phone':'"+phone+"','alipay':'"+alipay+"'}}";
 		}else{
-			return "{'status':'fail','message':'"+errorMessage+"'}";
+			return "{'status':'fail','message':'"+message+"','errorMessage':'"+errorMessage+"'}";
 		}
 	}
 
@@ -55,5 +56,13 @@ public class CreditQueryResult {
 
 	public void setAlipay(String alipay) {
 		this.alipay = alipay;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }
