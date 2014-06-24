@@ -141,6 +141,7 @@ public class CreditTool {
 		params.setSuccess(Boolean.valueOf(request.getParameter("success")));
 		params.setErrorMessage(request.getParameter("errorMessage"));
 		params.setBizId(request.getParameter("bizId"));
+		params.setUid(request.getParameter("uid"));
 		return params;
 	}
 	/**
