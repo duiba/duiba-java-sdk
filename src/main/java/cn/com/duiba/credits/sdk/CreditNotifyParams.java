@@ -11,6 +11,7 @@ public class CreditNotifyParams {
 	private String errorMessage;
 	private Date timestamp=new Date();
 	private String appKey;
+	private String uid;
 
 	public boolean isSuccess() {
 		return success;
@@ -66,6 +67,14 @@ public class CreditNotifyParams {
 		map.remove("appSecret");
 		map.put("sign", sign);
 		return map;
+	}
+
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	
 }
