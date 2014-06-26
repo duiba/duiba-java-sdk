@@ -32,6 +32,21 @@ public class CreditTool {
 		return url;
 	}
 	/**
+	 * 构建向兑吧查询兑换订单状态的url地址
+	 * @param orderNum 兑吧的订单号
+	 * @return
+	 */
+	public String buildCreditOrderStatusRequest(String orderNum){
+		String url="http://www.dui88.com/status/orderStatus?";
+		Map<String, String> params=new HashMap<String, String>();
+		params.put("orderNum", orderNum);
+		params.put("appKey", appKey);
+		params.put("appSecret", appSecret);
+		String sign=SignTool.sign(params);
+		url+="orderNum="+orderNum+"&appKey="+appKey+"&sign="+sign;
+		return url;
+	}
+	/**
 	 * 构建开发者审核结果的的方法
 	 * @param params
 	 * @return 发起请求的url
