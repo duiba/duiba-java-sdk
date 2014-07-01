@@ -15,6 +15,9 @@ public class CreditConsumeParams {
 	private String type="";//类型：QB,Phonebill,AlipayFast,Coupon
 	private Integer facePrice=0;//面值，分为单位
 	private Integer actualPrice=0;//实际扣款，分为单位
+	private String alipay="";//支付宝账号
+	private String phone="";//手机号
+	private String qq="";//qq号
 	private String uid;
 	private boolean waitAudit=false;//是否等待审核， 如果返回true，表示此订单需要审核，审核通过后才会继续下去。 如果返回false表示此订单无须审核，会直接继续兑换流程
 	public Integer getCredits() {
@@ -55,6 +58,9 @@ public class CreditConsumeParams {
 		map.put("type", type);
 		map.put("facePrice", facePrice+"");
 		map.put("actualPrice", actualPrice+"");
+		map.put("alipay", alipay);
+		map.put("phone", phone);
+		map.put("qq", qq);
 		
 		String sign=SignTool.sign(map);
 		
@@ -79,5 +85,41 @@ public class CreditConsumeParams {
 	}
 	public void setWaitAudit(boolean waitAudit) {
 		this.waitAudit = waitAudit;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public Integer getFacePrice() {
+		return facePrice;
+	}
+	public void setFacePrice(Integer facePrice) {
+		this.facePrice = facePrice;
+	}
+	public Integer getActualPrice() {
+		return actualPrice;
+	}
+	public void setActualPrice(Integer actualPrice) {
+		this.actualPrice = actualPrice;
+	}
+	public String getAlipay() {
+		return alipay;
+	}
+	public void setAlipay(String alipay) {
+		this.alipay = alipay;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getQq() {
+		return qq;
+	}
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
 }
