@@ -21,7 +21,7 @@ public class CreditTool {
 	 * @return 自动登录的url地址
 	 */
 	public String buildCreditAutoLoginRequest(String uid,int credits){
-		String url="http://www.dui88.com/autoLogin/autologin?";
+		String url="http://www.duiba.com.cn/autoLogin/autologin?";
 		Map<String, String> params=new HashMap<String, String>();
 		params.put("uid", uid);
 		params.put("credits", credits+"");
@@ -37,7 +37,7 @@ public class CreditTool {
 	 * @return
 	 */
 	public String buildCreditOrderStatusRequest(String orderNum){
-		String url="http://www.dui88.com/status/orderStatus?";
+		String url="http://www.duiba.com.cn/status/orderStatus?";
 		Map<String, String> params=new HashMap<String, String>();
 		params.put("orderNum", orderNum);
 		params.put("appKey", appKey);
@@ -52,7 +52,7 @@ public class CreditTool {
 	 * @return 发起请求的url
 	 */
 	public String buildCreditAuditRequest(CreditAuditParams params){
-		String url="http://www.dui88.com/audit/apiAudit?";
+		String url="http://www.duiba.com.cn/audit/apiAudit?";
 		Map<String, String> signParams=new HashMap<String, String>();
 		signParams.put("appKey", appKey);
 		signParams.put("appSecret", appSecret);
