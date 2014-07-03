@@ -6,6 +6,7 @@ public class CreditQueryResult {
 	private int credits;
 	private String phone="";//手机号
 	private String alipay="";//支付宝账号
+	private String qq="";//qq号
 	private String errorMessage="";
 	private String message="";
 
@@ -20,7 +21,7 @@ public class CreditQueryResult {
 	
 	public String toString(){
 		if(success){
-			return "{'status':'ok','message':'"+message+"','data':{'credits':'"+credits+"','phone':'"+phone+"','alipay':'"+alipay+"'}}";
+			return "{'status':'ok','message':'"+message+"','data':{'credits':'"+credits+"','phone':'"+phone+"','alipay':'"+alipay+"','qq':'"+qq+"'}}";
 		}else{
 			return "{'status':'fail','message':'"+message+"','errorMessage':'"+errorMessage+"'}";
 		}
@@ -64,5 +65,21 @@ public class CreditQueryResult {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public boolean isSuccess() {
+		return success;
+	}
+
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
 }

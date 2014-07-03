@@ -23,12 +23,14 @@ public class CreditTool {
 	public String buildCreditAutoLoginRequest(String uid,int credits){
 		String url="http://www.duiba.com.cn/autoLogin/autologin?";
 		Map<String, String> params=new HashMap<String, String>();
+		Long timestamp=new Date().getTime();
 		params.put("uid", uid);
 		params.put("credits", credits+"");
 		params.put("appSecret", appSecret);
 		params.put("appKey", appKey);
+		params.put("timestamp", timestamp+"");
 		String sign=SignTool.sign(params);
-		url+="uid="+uid+"&credits="+credits+"&appKey="+appKey+"&sign="+sign;
+		url+="uid="+uid+"&credits="+credits+"&appKey="+appKey+"&sign="+sign+"&timestamp="+timestamp;
 		return url;
 	}
 	/**
@@ -39,11 +41,13 @@ public class CreditTool {
 	public String buildCreditOrderStatusRequest(String orderNum){
 		String url="http://www.duiba.com.cn/status/orderStatus?";
 		Map<String, String> params=new HashMap<String, String>();
+		Long timestamp=new Date().getTime();
 		params.put("orderNum", orderNum);
 		params.put("appKey", appKey);
 		params.put("appSecret", appSecret);
+		params.put("timestamp", timestamp+"");
 		String sign=SignTool.sign(params);
-		url+="orderNum="+orderNum+"&appKey="+appKey+"&sign="+sign;
+		url+="orderNum="+orderNum+"&appKey="+appKey+"&sign="+sign+"&timestamp="+timestamp;
 		return url;
 	}
 	/**
@@ -54,8 +58,10 @@ public class CreditTool {
 	public String buildCreditAuditRequest(CreditAuditParams params){
 		String url="http://www.duiba.com.cn/audit/apiAudit?";
 		Map<String, String> signParams=new HashMap<String, String>();
+		Long timestamp=new Date().getTime();
 		signParams.put("appKey", appKey);
 		signParams.put("appSecret", appSecret);
+		signParams.put("timestamp", timestamp+"");
 		if(params.getPassOrderNums().size()>0){
 			String s=null;
 			for(String o:params.getPassOrderNums()){
@@ -80,7 +86,8 @@ public class CreditTool {
 		}
 		String sign=SignTool.sign(signParams);
 		
-		url+="appKey="+appKey+"&passOrderNums="+signParams.get("passOrderNums")+"&rejectOrderNums="+signParams.get("rejectOrderNums")+"&sign="+sign;
+		url+="appKey="+appKey+"&passOrderNums="+signParams.get("passOrderNums")+"&rejectOrderNums="+signParams.get("rejectOrderNums")+"&sign="+sign
+				+"&timestamp="+timestamp;
 		return url;
 	}
 	
