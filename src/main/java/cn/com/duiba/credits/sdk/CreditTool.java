@@ -139,6 +139,16 @@ public class CreditTool {
 		params.setTimestamp(new Date(Long.valueOf(request.getParameter("timestamp"))));
 		params.setDescription(request.getParameter("description"));
 		params.setOrderNum(request.getParameter("orderNum"));
+		params.setType(request.getParameter("type"));
+		if(request.getParameter("facePrice")!=null){
+			params.setFacePrice(Integer.valueOf(request.getParameter("facePrice")));
+		}
+		if(request.getParameter("actualPrice")!=null){
+			params.setActualPrice(Integer.valueOf(request.getParameter("actualPrice")));
+		}
+		params.setAlipay(request.getParameter("alipay"));
+		params.setPhone(request.getParameter("phone"));
+		params.setQq(request.getParameter("qq"));
 		return params;
 	}
 	/**
@@ -164,6 +174,8 @@ public class CreditTool {
 		params.setErrorMessage(request.getParameter("errorMessage"));
 		params.setBizId(request.getParameter("bizId"));
 		params.setUid(request.getParameter("uid"));
+		params.setAppKey(request.getParameter("appKey"));
+		params.setTimestamp(new Date(Long.valueOf(request.getParameter("timestamp"))));
 		return params;
 	}
 	/**
