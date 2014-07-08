@@ -135,6 +135,7 @@ public class CreditTool {
 		}
 		CreditConsumeParams params=new CreditConsumeParams();
 		params.setAppKey(appKey);
+		params.setUid(request.getParameter("uid"));
 		params.setCredits(Integer.valueOf(request.getParameter("credits")));
 		params.setTimestamp(new Date(Long.valueOf(request.getParameter("timestamp"))));
 		params.setDescription(request.getParameter("description"));
