@@ -62,7 +62,7 @@ public class CreditTool {
 		signParams.put("appKey", appKey);
 		signParams.put("appSecret", appSecret);
 		signParams.put("timestamp", timestamp+"");
-		if(params.getPassOrderNums().size()>0){
+		if(params.getPassOrderNums()!=null && params.getPassOrderNums().size()>0){
 			String s=null;
 			for(String o:params.getPassOrderNums()){
 				if(s==null){
@@ -72,8 +72,10 @@ public class CreditTool {
 				}
 			}
 			signParams.put("passOrderNums", s);
+		}else{
+			signParams.put("passOrderNums", "");
 		}
-		if(params.getRejectOrderNums().size()>0){
+		if(params.getRejectOrderNums()!=null && params.getRejectOrderNums().size()>0){
 			String s=null;
 			for(String o:params.getRejectOrderNums()){
 				if(s==null){
@@ -83,6 +85,8 @@ public class CreditTool {
 				}
 			}
 			signParams.put("rejectOrderNums", s);
+		}else{
+			signParams.put("rejectOrderNums", "");
 		}
 		String sign=SignTool.sign(signParams);
 		
