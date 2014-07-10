@@ -150,6 +150,9 @@ public class CreditTool {
 		params.setAlipay(request.getParameter("alipay"));
 		params.setPhone(request.getParameter("phone"));
 		params.setQq(request.getParameter("qq"));
+		if(request.getParameter("waitAudit")!=null){
+			params.setWaitAudit(Boolean.valueOf(request.getParameter("waitAudit")));
+		}
 		return params;
 	}
 	/**
