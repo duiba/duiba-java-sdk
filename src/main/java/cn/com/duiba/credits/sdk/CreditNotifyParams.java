@@ -11,7 +11,7 @@ public class CreditNotifyParams {
 	private String errorMessage;
 	private Date timestamp=new Date();
 	private String appKey;
-	private String uid;
+	private String uid="";
 
 	public boolean isSuccess() {
 		return success;
@@ -61,6 +61,7 @@ public class CreditNotifyParams {
 		map.put("appKey", appKey);
 		map.put("appSecret", appSecret);
 		map.put("timestamp", timestamp.getTime()+"");
+		map.put("uid", uid);
 		
 		String sign=SignTool.sign(map);
 		
