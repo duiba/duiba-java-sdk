@@ -8,7 +8,7 @@ public class CreditNotifyParams {
 
 	private boolean success;
 	private String bizId="";
-	private String errorMessage;
+	private String errorMessage="";
 	private Date timestamp=new Date();
 	private String appKey;
 	private String uid="";
@@ -56,12 +56,12 @@ public class CreditNotifyParams {
 	public Map<String, String> toRequestMap(String appSecret){
 		Map<String, String> map=new HashMap<String, String>();
 		map.put("success", success+"");
-		map.put("errorMessage", errorMessage);
-		map.put("bizId", bizId);
-		map.put("appKey", appKey);
-		map.put("appSecret", appSecret);
+		map.put("errorMessage", errorMessage+"");
+		map.put("bizId", bizId+"");
+		map.put("appKey", appKey+"");
+		map.put("appSecret", appSecret+"");
 		map.put("timestamp", timestamp.getTime()+"");
-		map.put("uid", uid);
+		map.put("uid", uid+"");
 		
 		String sign=SignTool.sign(map);
 		

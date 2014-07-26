@@ -7,7 +7,7 @@ import java.util.Map;
 public class CreditNeedAuditParams {
 
 	private String appKey;
-	private String bizId;
+	private String bizId="";
 	private Date timestamp;
 	
 	public CreditNeedAuditParams(){
@@ -39,9 +39,9 @@ public class CreditNeedAuditParams {
 	
 	public Map<String, String> toRequestMap(String appSecret){
 		Map<String, String> map=new HashMap<String, String>();
-		map.put("bizId", bizId);
-		map.put("appKey", appKey);
-		map.put("appSecret", appSecret);
+		map.put("bizId", bizId+"");
+		map.put("appKey", appKey+"");
+		map.put("appSecret", appSecret+"");
 		map.put("timestamp", timestamp.getTime()+"");
 		
 		String sign=SignTool.sign(map);
