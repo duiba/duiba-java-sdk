@@ -20,6 +20,7 @@ public class CreditConsumeParams {
 	private String qq="";//qq号,type为qb时会有值
 	private String uid="";
 	private boolean waitAudit=false;//是否等待审核， 如果返回true，表示此订单需要审核，审核通过后才会继续下去。 如果返回false表示此订单无须审核，会直接继续兑换流程
+	private String ip="";//用户兑换时使用的ip地址，有可能为空
 	public Integer getCredits() {
 		return credits;
 	}
@@ -61,6 +62,7 @@ public class CreditConsumeParams {
 		map.put("alipay", alipay);
 		map.put("phone", phone);
 		map.put("qq", qq);
+		map.put("ip", ip);
 		
 		String sign=SignTool.sign(map);
 		
@@ -121,5 +123,11 @@ public class CreditConsumeParams {
 	}
 	public void setQq(String qq) {
 		this.qq = qq;
+	}
+	public String getIp() {
+		return ip;
+	}
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 }

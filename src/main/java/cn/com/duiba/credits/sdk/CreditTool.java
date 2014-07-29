@@ -157,6 +157,7 @@ public class CreditTool {
 		if(request.getParameter("waitAudit")!=null){
 			params.setWaitAudit(Boolean.valueOf(request.getParameter("waitAudit")));
 		}
+		params.setIp(request.getParameter("ip"));
 		return params;
 	}
 	/**
