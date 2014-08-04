@@ -38,16 +38,23 @@ public class CreditTool {
 	 * @param orderNum 兑吧的订单号
 	 * @return
 	 */
-	public String buildCreditOrderStatusRequest(String orderNum){
+	public String buildCreditOrderStatusRequest(String orderNum,String bizId){
+		if(orderNum==null){
+			orderNum="";
+		}
+		if(bizId==null){
+			bizId="";
+		}
 		String url="http://www.duiba.com.cn/status/orderStatus?";
 		Map<String, String> params=new HashMap<String, String>();
 		Long timestamp=new Date().getTime();
 		params.put("orderNum", orderNum);
+		params.put("bizId", bizId);
 		params.put("appKey", appKey);
 		params.put("appSecret", appSecret);
 		params.put("timestamp", timestamp+"");
 		String sign=SignTool.sign(params);
-		url+="orderNum="+orderNum+"&appKey="+appKey+"&sign="+sign+"&timestamp="+timestamp;
+		url+="orderNum="+orderNum+"&bizId="+bizId+"&appKey="+appKey+"&sign="+sign+"&timestamp="+timestamp;
 		return url;
 	}
 	/**
