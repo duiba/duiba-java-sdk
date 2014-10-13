@@ -192,6 +192,7 @@ public class CreditTool {
 		params.setUid(request.getParameter("uid"));
 		params.setAppKey(request.getParameter("appKey"));
 		params.setTimestamp(new Date(Long.valueOf(request.getParameter("timestamp"))));
+		params.setOrderNum(request.getParameter("orderNum"));
 		return params;
 	}
 	/**

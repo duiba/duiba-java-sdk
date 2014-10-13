@@ -9,6 +9,7 @@ public class CreditNotifyParams {
 	private boolean success;
 	private String bizId="";
 	private String errorMessage="";
+	private String orderNum="";
 	private Date timestamp=new Date();
 	private String appKey;
 	private String uid="";
@@ -56,18 +57,26 @@ public class CreditNotifyParams {
 	public Map<String, String> toRequestMap(String appSecret){
 		Map<String, String> map=new HashMap<String, String>();
 		map.put("success", success+"");
-		map.put("errorMessage", errorMessage+"");
-		map.put("bizId", bizId+"");
-		map.put("appKey", appKey+"");
-		map.put("appSecret", appSecret+"");
-		map.put("timestamp", timestamp.getTime()+"");
-		map.put("uid", uid+"");
+		map.put("errorMessage", getString(errorMessage));
+		map.put("bizId", getString(bizId));
+		map.put("appKey", getString(appKey));
+		map.put("appSecret", getString(appSecret));
+		map.put("timestamp",getString( timestamp.getTime()));
+		map.put("uid", getString(uid));
+		map.put("orderNum", getString(orderNum));
 		
 		String sign=SignTool.sign(map);
 		
 		map.remove("appSecret");
 		map.put("sign", sign);
 		return map;
+	}
+	
+	private String getString(Object o){
+		if(o==null){
+			return "";
+		}
+		return o.toString();
 	}
 
 	public String getUid() {
@@ -76,6 +85,14 @@ public class CreditNotifyParams {
 
 	public void setUid(String uid) {
 		this.uid = uid;
+	}
+
+	public String getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(String orderNum) {
+		this.orderNum = orderNum;
 	}
 	
 }
