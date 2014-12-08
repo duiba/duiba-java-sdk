@@ -9,7 +9,7 @@ public class CreditConsumeParams {
 
 	private String appKey;
 	private Date timestamp;//时间戳
-	private Integer credits;//消耗积分数
+	private Long credits;//消耗积分数
 	private String orderNum="";//兑吧订单号
 	private String description="";
 	private String type="";//类型：QB,Phonebill,AlipayFast,Coupon  所有类型不区分大小写
@@ -21,10 +21,11 @@ public class CreditConsumeParams {
 	private String uid="";
 	private boolean waitAudit=false;//是否等待审核， 如果返回true，表示此订单需要审核，审核通过后才会继续下去。 如果返回false表示此订单无须审核，会直接继续兑换流程
 	private String ip="";//用户兑换时使用的ip地址，有可能为空
-	public Integer getCredits() {
+	private String params="";//参数，根据不同的type，有不同的含义
+	public Long getCredits() {
 		return credits;
 	}
-	public void setCredits(Integer credits) {
+	public void setCredits(Long credits) {
 		this.credits = credits;
 	}
 	public String getDescription() {
@@ -63,6 +64,7 @@ public class CreditConsumeParams {
 		map.put("phone", phone);
 		map.put("qq", qq);
 		map.put("ip", ip);
+		map.put("params", params);
 		
 		String sign=SignTool.sign(map);
 		
@@ -129,5 +131,11 @@ public class CreditConsumeParams {
 	}
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+	public String getParams() {
+		return params;
+	}
+	public void setParams(String params) {
+		this.params = params;
 	}
 }

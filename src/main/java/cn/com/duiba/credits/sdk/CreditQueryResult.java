@@ -3,7 +3,7 @@ package cn.com.duiba.credits.sdk;
 public class CreditQueryResult {
 
 	private boolean success;
-	private int credits;
+	private Long credits;
 	private String phone="";//手机号
 	private String alipay="";//支付宝账号
 	private String qq="";//qq号
@@ -14,7 +14,7 @@ public class CreditQueryResult {
 		this.success=success;
 	}
 	
-	public CreditQueryResult(boolean success,int credits){
+	public CreditQueryResult(boolean success,Long credits){
 		this.success=success;
 		this.credits=credits;
 	}
@@ -27,11 +27,11 @@ public class CreditQueryResult {
 		}
 	}
 
-	public int getCredits() {
+	public Long getCredits() {
 		return credits;
 	}
 
-	public void setCredits(int credits) {
+	public void setCredits(Long credits) {
 		this.credits = credits;
 	}
 

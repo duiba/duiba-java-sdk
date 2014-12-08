@@ -6,7 +6,18 @@ public class CreditConsumeResult {
 	private String errorMessage="";
 	private String message="";
 	private String bizId="";
-	private Integer credits=-1;//用户积分余额
+	private Long credits=-1L;//用户积分余额
+	
+	/**
+	 * 目前只针对虚拟商品开放此字段的含义
+	 * 
+	 * ExchangeStatusSuccess(常量) : 直接成功
+	 */
+	private String exchangeStatus="";// 
+	
+	public static final String ExchangeStatusSuccess="exchange_success";
+	
+
 	public CreditConsumeResult(boolean success){
 		this.success=success;
 	}
@@ -14,7 +25,7 @@ public class CreditConsumeResult {
 	
 	public String toString(){
 		if(success){
-			return "{'status':'ok','message':'"+message+"','errorMessage':'','data':{'bizId':'"+bizId+"','credits':'"+credits+"'}}";
+			return "{'status':'ok','message':'"+message+"','errorMessage':'','data':{'bizId':'"+bizId+"','credits':'"+credits+"','exchangeStatus':'"+exchangeStatus+"'}}";
 		}else{
 			return "{'status':'fail','message':'"+message+"','errorMessage':'"+errorMessage+"','credits':'"+credits+"'}";
 		}
@@ -41,12 +52,22 @@ public class CreditConsumeResult {
 	}
 
 
-	public Integer getCredits() {
+	public Long getCredits() {
 		return credits;
 	}
 
 
-	public void setCredits(Integer credits) {
+	public void setCredits(Long credits) {
 		this.credits = credits;
+	}
+
+
+	public String getExchangeStatus() {
+		return exchangeStatus;
+	}
+
+
+	public void setExchangeStatus(String exchangeStatus) {
+		this.exchangeStatus = exchangeStatus;
 	}
 }

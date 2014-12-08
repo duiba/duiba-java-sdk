@@ -101,7 +101,26 @@ public class CreditTool {
 				+"&timestamp="+timestamp;
 		return url;
 	}
-	
+	/**
+	 * 构建开发者向兑吧发起兑换成功失败的确认通知请求
+	 * @param params
+	 * @return
+	 */
+	public String buildCreditConfirmRequest(CreditConfirmParams p){
+		String url="http://www.duiba.com.cn/confirm/confirm?";
+		Map<String, String> params=new HashMap<String, String>();
+		Long timestamp=new Date().getTime();
+		params.put("appSecret", appSecret);
+		params.put("appKey", appKey);
+		params.put("timestamp", timestamp+"");
+		params.put("success", p.isSuccess()+"");
+		params.put("errorMessage", p.getErrorMessage());
+		params.put("orderNum", p.getOrderNum());
+		String sign=SignTool.sign(params);
+		url+="appKey="+appKey+"&sign="+sign+"&timestamp="+timestamp+"&success="+p.isSuccess()+"&errorMessage="+p.getErrorMessage()+"&orderNum="+p.getOrderNum();
+		return url;
+	}
+
 	
 	
 	/**
@@ -147,7 +166,7 @@ public class CreditTool {
 		CreditConsumeParams params=new CreditConsumeParams();
 		params.setAppKey(appKey);
 		params.setUid(request.getParameter("uid"));
-		params.setCredits(Integer.valueOf(request.getParameter("credits")));
+		params.setCredits(Long.valueOf(request.getParameter("credits")));
 		params.setTimestamp(new Date(Long.valueOf(request.getParameter("timestamp"))));
 		params.setDescription(request.getParameter("description"));
 		params.setOrderNum(request.getParameter("orderNum"));
