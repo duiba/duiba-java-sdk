@@ -14,6 +14,29 @@ public class CreditTool {
 		this.appKey=appKey;
 		this.appSecret=appSecret;
 	}
+	
+	/**
+	 * 通用的url生成方法
+	 * 如果下面的方法不能满足，可以使用此方法进行生成
+	 * @param url
+	 * @param params
+	 * @return
+	 */
+	public String buildUrlWithSign(String url,Map<String, String> params){
+		Map<String, String> newparams=new HashMap<String, String>(params);
+		newparams.put("appKey", appKey);
+		newparams.put("appSecret", appSecret);
+		if(newparams.get("timestamp")==null){
+			newparams.put("timestamp", System.currentTimeMillis()+"");
+		}
+		String sign=SignTool.sign(newparams);
+		newparams.put("sign", sign);
+		
+		newparams.remove("appSecret");
+		
+		return AssembleTool.assembleUrl(url, newparams);
+	}
+	
 	/**
 	 * 构建在兑吧商城自动登录的url地址
 	 * @param uid 用户id
@@ -33,6 +56,7 @@ public class CreditTool {
 		url+="uid="+uid+"&credits="+credits+"&appKey="+appKey+"&sign="+sign+"&timestamp="+timestamp;
 		return url;
 	}
+	
 	/**
 	 * 构建向兑吧查询兑换订单状态的url地址
 	 * @param orderNum 兑吧的订单号
