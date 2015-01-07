@@ -148,29 +148,6 @@ public class CreditTool {
 	
 	
 	/**
-	 * 积分余额查询的解析方法
-	 * @param request
-	 * @return
-	 * @throws Exception
-	 */
-	public CreditQueryParams parseCreditQuery(HttpServletRequest request) throws Exception{
-		if(!appKey.equals(request.getParameter("appKey"))){
-			throw new Exception("appKey不匹配");
-		}
-		if(request.getParameter("timestamp")==null){
-			throw new Exception("请求中没有带时间戳");
-		}
-		boolean verify=SignTool.signVerify(appSecret, request);
-		if(!verify){
-			throw new Exception("签名验证失败");
-		}
-		CreditQueryParams params=new CreditQueryParams();
-		params.setUid(request.getParameter("uid"));
-		params.setAppKey(appKey);
-		params.setTimestamp(new Date(Long.valueOf(request.getParameter("timestamp"))));
-		return params;
-	}
-	/**
 	 * 积分消耗请求的解析方法
 	 * @param request
 	 * @return
@@ -208,6 +185,7 @@ public class CreditTool {
 			params.setWaitAudit(Boolean.valueOf(request.getParameter("waitAudit")));
 		}
 		params.setIp(request.getParameter("ip"));
+		params.setParams(request.getParameter("params"));
 		return params;
 	}
 	/**
