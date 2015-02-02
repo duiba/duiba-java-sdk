@@ -12,16 +12,16 @@ public class CreditConsumeParams {
 	private Long credits;//消耗积分数
 	private String orderNum="";//兑吧订单号
 	private String description="";
-	private String type="";//类型：QB,Phonebill,AlipayFast,Coupon  所有类型不区分大小写
+	private String type="";//类型：QB,Phonebill,Alipay,Coupon  所有类型不区分大小写
 	private Integer facePrice=0;//面值，分为单位
 	private Integer actualPrice=0;//实际扣款，分为单位
-	private String alipay="";//支付宝账号,type为alipayfast时会有值
-	private String phone="";//手机号,type为phonebill时会有值
-	private String qq="";//qq号,type为qb时会有值
+	private String alipay="";//已废弃，请使用params
+	private String phone="";//已废弃，请使用params
+	private String qq="";//已废弃，请使用params
 	private String uid="";
 	private boolean waitAudit=false;//是否等待审核， 如果返回true，表示此订单需要审核，审核通过后才会继续下去。 如果返回false表示此订单无须审核，会直接继续兑换流程
 	private String ip="";//用户兑换时使用的ip地址，有可能为空
-	private String params="";//参数，根据不同的type，有不同的含义
+	private String params="";//参数，根据不同的type，有不同的含义，参见在线文档
 	public Long getCredits() {
 		return credits;
 	}
