@@ -22,6 +22,7 @@ public class CreditConsumeParams {
 	private boolean waitAudit=false;//是否等待审核， 如果返回true，表示此订单需要审核，审核通过后才会继续下去。 如果返回false表示此订单无须审核，会直接继续兑换流程
 	private String ip="";//用户兑换时使用的ip地址，有可能为空
 	private String params="";//参数，根据不同的type，有不同的含义，参见在线文档
+	private String transfer="";
 	public Long getCredits() {
 		return credits;
 	}
@@ -60,11 +61,13 @@ public class CreditConsumeParams {
 		map.put("type", type);
 		map.put("facePrice", facePrice+"");
 		map.put("actualPrice", actualPrice+"");
-		map.put("alipay", alipay);
-		map.put("phone", phone);
-		map.put("qq", qq);
 		map.put("ip", ip);
 		map.put("params", params);
+		
+		putIfNotEmpty(map, "transfer", transfer);
+		putIfNotEmpty(map, "qq", qq);
+		putIfNotEmpty(map, "alipay", alipay);
+		putIfNotEmpty(map, "phone", phone);
 		
 		String sign=SignTool.sign(map);
 		
@@ -72,6 +75,14 @@ public class CreditConsumeParams {
 		map.put("sign", sign);
 		return map;
 	}
+	
+	private void putIfNotEmpty(Map<String, String> map,String key,String value){
+		if(value==null || value.length()==0){
+			return;
+		}
+		map.put(key, value);
+	}
+	
 	public String getUid() {
 		return uid;
 	}
@@ -137,5 +148,11 @@ public class CreditConsumeParams {
 	}
 	public void setParams(String params) {
 		this.params = params;
+	}
+	public String getTransfer() {
+		return transfer;
+	}
+	public void setTransfer(String transfer) {
+		this.transfer = transfer;
 	}
 }
