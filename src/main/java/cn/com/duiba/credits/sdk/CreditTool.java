@@ -43,7 +43,7 @@ public class CreditTool {
 	 * @param credits 用户积分余额
 	 * @return 自动登录的url地址
 	 */
-	public String buildCreditAutoLoginRequest(String uid,int credits){
+	public String buildCreditAutoLoginRequest(String uid,Long credits){
 		String url="http://www.duiba.com.cn/autoLogin/autologin?";
 		Map<String, String> params=new HashMap<String, String>();
 		Long timestamp=new Date().getTime();
