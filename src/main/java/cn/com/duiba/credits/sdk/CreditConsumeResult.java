@@ -4,7 +4,6 @@ public class CreditConsumeResult {
 
 	private boolean success;
 	private String errorMessage="";
-	private String message="";
 	private String bizId="";
 	private Long credits=-1L;//用户积分余额
 	
@@ -15,9 +14,9 @@ public class CreditConsumeResult {
 	
 	public String toString(){
 		if(success){
-			return "{'status':'ok','message':'"+message+"','errorMessage':'','bizId':'"+bizId+"','credits':'"+credits+"'}";
+			return "{'status':'ok','errorMessage':'','bizId':'"+bizId+"','credits':'"+credits+"'}";
 		}else{
-			return "{'status':'fail','message':'"+message+"','errorMessage':'"+errorMessage+"','credits':'"+credits+"'}";
+			return "{'status':'fail','errorMessage':'"+errorMessage+"','credits':'"+credits+"'}";
 		}
 	}
 
