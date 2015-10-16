@@ -23,6 +23,8 @@ public class CreditConsumeParams {
 	private String ip="";//用户兑换时使用的ip地址，有可能为空
 	private String params="";//参数，根据不同的type，有不同的含义，参见在线文档
 	private String transfer="";
+	private String itemCode="";
+	
 	public Long getCredits() {
 		return credits;
 	}
@@ -68,6 +70,8 @@ public class CreditConsumeParams {
 		putIfNotEmpty(map, "qq", qq);
 		putIfNotEmpty(map, "alipay", alipay);
 		putIfNotEmpty(map, "phone", phone);
+		
+		putIfNotEmpty(map, "itemCode", itemCode);
 		
 		String sign=SignTool.sign(map);
 		
@@ -154,5 +158,11 @@ public class CreditConsumeParams {
 	}
 	public void setTransfer(String transfer) {
 		this.transfer = transfer;
+	}
+	public String getItemCode() {
+		return itemCode;
+	}
+	public void setItemCode(String itemCode) {
+		this.itemCode = itemCode;
 	}
 }

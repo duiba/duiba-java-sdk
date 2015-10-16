@@ -186,6 +186,7 @@ public class CreditTool {
 		}
 		params.setIp(request.getParameter("ip"));
 		params.setParams(request.getParameter("params"));
+		params.setItemCode(request.getParameter("itemCode"));
 		return params;
 	}
 	/**
