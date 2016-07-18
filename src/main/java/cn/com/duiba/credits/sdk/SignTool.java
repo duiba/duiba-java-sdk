@@ -24,13 +24,15 @@ public class SignTool {
 	
 	public static boolean signVerify(String appSecret,Map<String, String> params){
 		Map<String, String> map=new HashMap<String, String>();
-		map.put("appSecret", appSecret);
+		
 		
 		for(String key:params.keySet()){
-			if(!key.equals("sign")){
+			if(!key.equals("sign") && !key.toLowerCase().equals("appsecret")){
 				map.put(key, params.get(key));
 			}
 		}
+		
+		map.put("appSecret", appSecret);
 		
 		String sign=sign(map);
 		if(sign.equals(params.get("sign"))){
