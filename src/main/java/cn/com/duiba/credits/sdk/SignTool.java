@@ -2,17 +2,32 @@ package cn.com.duiba.credits.sdk;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class SignTool {
 
+	private static final Set<String> SIGN_KEYS = new HashSet<String>();
+	private static final Set<String> IGNORE_KEYS = new HashSet<String>();
+	static{
+		SIGN_KEYS.add("uid");
+		SIGN_KEYS.add("credits");
+		SIGN_KEYS.add("appKey");
+		SIGN_KEYS.add("timestamp");
+		SIGN_KEYS.add("dcustom");
+		SIGN_KEYS.add("transfer");
+		SIGN_KEYS.add("vip");
+		SIGN_KEYS.add("signKeys");
+		SIGN_KEYS.add("alipay");
+		SIGN_KEYS.add("realname");
+		SIGN_KEYS.add("qq");
+		SIGN_KEYS.add("phone");
+
+		IGNORE_KEYS.add("sign");
+		IGNORE_KEYS.add("appsecret");
+	}
+	
 	public static boolean signVerify(String appSecret,HttpServletRequest request){
 		Map<String, String[]> map=request.getParameterMap();
 		Map<String, String> data=new HashMap<String, String>();
@@ -24,10 +39,24 @@ public class SignTool {
 	
 	public static boolean signVerify(String appSecret,Map<String, String> params){
 		Map<String, String> map=new HashMap<String, String>();
-		
-		
-		for(String key:params.keySet()){
-			if(!key.equals("sign") && !key.toLowerCase().equals("appsecret")){
+
+		Set<String> ignoreKeys = new HashSet<String>(IGNORE_KEYS);
+		Set<String> keys = params.keySet();
+
+		if(params.containsKey("signKeys")){
+			String signKeys = params.get("signKeys");
+			List<String> signKeysList = Arrays.asList(signKeys.split("|"));
+			for(String key:keys){
+				if (SIGN_KEYS.contains(key) || signKeysList.contains(key)){
+					continue;
+				}else{
+					ignoreKeys.add(key.toLowerCase());
+				}
+			}
+		}
+
+		for(String key:keys){
+			if(!ignoreKeys.contains(key.toLowerCase())){
 				map.put(key, params.get(key));
 			}
 		}
@@ -68,7 +97,7 @@ public class SignTool {
 		}
 		String sign="";
 		try {
-			sign = toHexValue(encryptMD5(string.getBytes(Charset.forName("utf-8"))));
+			sign = toHexValue(encryptMD5(string.getBytes("utf-8")));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("md5 error");
@@ -89,12 +118,17 @@ public class SignTool {
 		Map<String, String> params=new HashMap<String, String>();
 		params.put("appKey", appKey);
 		params.put("appSecret", appSecret);
-		params.put("date", new Date().getTime()+"");
+		params.put("signKeys","a|b");
+		params.put("a", "222");
+		params.put("b", "666");
 		
 		String sign=sign(params);
-		
+
+		params.put("c", "777");
+		params.put("date", new Date().getTime()+"");
 		params.put("sign", sign);
-		
+
+
 		System.out.println(signVerify(appSecret, params));
 		
 	}
