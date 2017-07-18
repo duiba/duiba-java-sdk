@@ -1,10 +1,9 @@
-package cn.com.duiba.credits.sdk.result;
+package cn.com.duiba.credits.sdk;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.com.duiba.credits.sdk.CreditTool;
 import cn.com.duiba.credits.sdk.entity.CreditAuditParams;
 import cn.com.duiba.credits.sdk.entity.CreditConfirmParams;
 import cn.com.duiba.credits.sdk.entity.ExpressInfo;
