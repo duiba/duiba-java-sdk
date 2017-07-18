@@ -1,8 +1,10 @@
-package cn.com.duiba.credits.sdk;
+package cn.com.duiba.credits.sdk.entity;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.com.duiba.credits.sdk.SignTool;
 
 public class CreditNotifyParams {
 

@@ -3,6 +3,8 @@ package cn.com.duiba.credits.sdk;
 import org.junit.Assert;
 import org.junit.Test;
 
+import cn.com.duiba.credits.sdk.result.CreditConsumeResult;
+
 import com.alibaba.fastjson.JSONObject;
 
 public class CreditConsumeResultTests {

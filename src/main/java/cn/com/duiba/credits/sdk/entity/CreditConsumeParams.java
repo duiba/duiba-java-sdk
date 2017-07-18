@@ -1,8 +1,10 @@
-package cn.com.duiba.credits.sdk;
+package cn.com.duiba.credits.sdk.entity;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.com.duiba.credits.sdk.SignTool;
 
 
 public class CreditConsumeParams {
@@ -12,6 +14,7 @@ public class CreditConsumeParams {
 	private Long credits;//消耗积分数
 	private String orderNum="";//兑吧订单号
 	private String description="";
+	private String itemCode="";//商品编码，非必须参数
 	private String type="";//类型：QB,Phonebill,Alipay,Coupon  所有类型不区分大小写
 	private Integer facePrice=0;//面值，分为单位
 	private Integer actualPrice=0;//实际扣款，分为单位
@@ -23,30 +26,6 @@ public class CreditConsumeParams {
 	private String ip="";//用户兑换时使用的ip地址，有可能为空
 	private String params="";//参数，根据不同的type，有不同的含义，参见在线文档
 	private String transfer="";
-	public Long getCredits() {
-		return credits;
-	}
-	public void setCredits(Long credits) {
-		this.credits = credits;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public String getAppKey() {
-		return appKey;
-	}
-	public void setAppKey(String appKey) {
-		this.appKey = appKey;
-	}
-	public Date getTimestamp() {
-		return timestamp;
-	}
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
-	}
 	
 	public Map<String, String> toRequestMap(String appSecret){
 		Map<String, String> map=new HashMap<String, String>();
@@ -63,7 +42,7 @@ public class CreditConsumeParams {
 		map.put("actualPrice", actualPrice+"");
 		map.put("ip", ip);
 		map.put("params", params);
-		
+		putIfNotEmpty(map, "itemCode", itemCode);
 		putIfNotEmpty(map, "transfer", transfer);
 		putIfNotEmpty(map, "qq", qq);
 		putIfNotEmpty(map, "alipay", alipay);
@@ -83,6 +62,40 @@ public class CreditConsumeParams {
 		map.put(key, value);
 	}
 	
+	
+	
+	public Long getCredits() {
+		return credits;
+	}
+	public void setCredits(Long credits) {
+		this.credits = credits;
+	}
+	public String getItemCode() {
+		return itemCode;
+	}
+	public void setItemCode(String itemCode) {
+		this.itemCode = itemCode;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getAppKey() {
+		return appKey;
+	}
+	public void setAppKey(String appKey) {
+		this.appKey = appKey;
+	}
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
 	public String getUid() {
 		return uid;
 	}

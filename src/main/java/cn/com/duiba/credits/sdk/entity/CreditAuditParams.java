@@ -1,4 +1,4 @@
-package cn.com.duiba.credits.sdk;
+package cn.com.duiba.credits.sdk.entity;
 
 import java.util.ArrayList;
 import java.util.List;
